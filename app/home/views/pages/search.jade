@@ -1,0 +1,41 @@
+.page#page-search
+	+addStyle("/home/css/search.css")
+
+	script.
+		
+		$(document).ready(function(){
+			
+			var api = new Api();
+			
+			function SearchModel(){
+				var self = this;
+			
+				self.term = ko.observable("");
+				self.results = ko.observableArray([])
+			};
+			
+			var modelSearch = new SearchModel();
+			
+			//add methods
+			modelSearch.submitSearch = function(){
+				//make the search
+				api.search( modelSearch.term(), function( err, results ){
+					//populate the results
+					modelSearch.results( Array.isArray(results) ? results : [] );
+				})
+			}
+			
+			ko.applyBindings( modelSearch );
+			
+		});
+		
+	input(data-bind="value:term()")
+	button(data-bind="click:submitSearch") Search
+	
+	//ko if: (results() || []).length > 0
+	h2 Results:
+	ul(data-bind="foreach: results")
+		li
+			span.name(data-bind="text:name")
+			span.location(data-bind="text:location")
+	// /ko

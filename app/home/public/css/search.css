@@ -1,0 +1,18 @@
+/*EDIT THE search.styl NOT search.css*/
+.page#page-search {
+  padding: 30px 50px 20px 50px;
+}
+.page#page-search input {
+  font-size: 3em;
+}
+.page#page-search button {
+  font-size: 3em;
+}
+.page#page-search .name {
+  width: 150px;
+  display: inline-block;
+}
+.page#page-search .location {
+  width: 250px;
+  display: inline-block;
+}

@@ -1,0 +1,37 @@
+Quick Instructions
+
+Setup:
+
+Install Node Software (this acts as a server that runs your app)
+Goto the directory of the app.js file in windows command line.
+from the directory use
+
+	 'npm install -d' to install all elements mentioned 
+
+in the 'package.json' file
+type 'node app' to run app. (it appears at node.exe in running processes)
+CRTL+C in the command line window will gracefully close node.exe / the webserver.
+
+Adding Webpages:
+
+Create a public folder next to the app.js file, this becomes the ROOT webdirectory.
+Create an Index.html / any other webpages there.
+The name of the webpages folder is defined in the app.js file
+
+	var dirPublic = path.join( __dirname, "public" );
+	app.use( express.static( dirPublic ) );
+
+Testing Website:
+
+Visit The website by going to localhost in a browser. This Particular site
+(as configured in package.json) is on port 4000. So entering localhost:4000 will open
+the index.html page.
+
+
+
+
+Webpage Notes:
+
+	| at the begining of a line means 'append' to above if something is appended to a 'strong.id' object it will move the text over by certain abount of pixels
+
+	- at the begining of the line means treat everything after it (and anything indented after it) as inline code.

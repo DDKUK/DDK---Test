@@ -1,0 +1,22 @@
+{
+  "name": "NodeAndScala",
+  "version": "0.0.0",
+  "description": "Basic Node and Scala framework for Pixel",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jimib",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.12.2",
+    "express": "^4.12.3",
+    "jade": "^1.9.2",
+    "obs": "^1.0.2",
+    "stylus": "^0.50.0",
+    "underscore": "^1.8.2"
+  },
+  "devDependencies": {
+    "supertest": "^0.15.0"
+  }
+}

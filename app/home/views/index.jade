@@ -1,0 +1,44 @@
+include ../../../views/default.jade
+
+block head
+	//add stylesheets
+	+addStyle("/home/css/index.css")
+	+addStyle("/home/css/accordian.css")
+	
+	//add API scripts
+	+addScript("/api/js/models.js")
+	+addScript("/api/js/index.js")
+
+	//add Components scripts
+	+addScript("/home/js/component/accordian.js")
+	
+block body
+	#accordian
+		ul
+			li.panel.welcome
+				h1 HOME PAGE
+				.content
+					include ./pages/welcome
+			
+			li.panel.search-by
+				h1 Search By
+				.content
+					include ./pages/search
+			
+			li.panel.brands
+				h1 Brands
+				.content
+			
+			li.panel.services
+				h1 Services
+				.content
+			
+			li.panel.departments
+				h1 Departments
+				.content
+				
+	
+block footer
+	//our main script
+	+addScript("/home/js/index.js")
+	

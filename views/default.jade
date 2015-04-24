@@ -1,0 +1,16 @@
+include ./mixins.jade
+html
+	head
+		title #{ title || "Node App" }
+		
+		block head
+		
+	body
+		block body
+		
+		+addScript("/js/jquery.js")
+		+addScript("/js/knockout.js")
+		
+		block footer
+		
+		

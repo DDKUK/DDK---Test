@@ -1,0 +1,26 @@
+html
+	head
+		title Node Server: index.jade
+		
+		style.
+			.id{
+				width: 100px;
+				margin-right: 20px;
+				display: inline-block;
+			}
+	body
+		h1 Hello World!
+		p Lorem Ipsum...
+		
+		- for(var id in locals)
+			p
+				strong.id #{id}: 
+				|#{locals[id]}
+
+
+		p
+				strong.id hello1:
+				| hello3
+
+		p 	hello everyone
+			|how are you

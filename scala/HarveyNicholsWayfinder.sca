@@ -1,0 +1,71 @@
+﻿!ScalaScript1030
+// Saved by Scala Designer Release 10.3.3 at 2015-04-23 16:18:41
+:"HarveyNicholsWayfinder.sca"
+{
+  Group:
+    FileNameString(appZipPath("export.zip"));
+    String(serverPath, serverArgs[11], dataPath, urlHome, Log);
+    BackgroundSettings(Size(1920, 1080));
+    OnNotification(urlHome, Goto("LoopWaitingForServer"));
+	External String(Player.PED_Type,Player.PED_User,Player.PED_PIN,Player.CWS_URL,Player.DAI_URL,Player.Store_ID);
+    Config.RecentPublishLocations(PublishLocation("scalabeta.pixelinspiration.co.uk ContentManager", "HarveyNicholsWayfinder"));
+  Sequence:
+    :"SET VARS"
+    {
+      Sequence:
+        Log = "";
+        serverPath = "~/pixelApp/HarveyNicholsWayfinder";
+        serverArgs[0] = "--ped.type";
+        serverArgs[1] = Player.PED_Type;
+        serverArgs[2] = "--ped.user";
+        serverArgs[3] = Player.PED_User;
+        serverArgs[4] = "--ped.password";
+        serverArgs[5] = Player.PED_PIN;
+        serverArgs[6] = "--api.cws.url";
+        serverArgs[7] = Player.CWS_URL;
+        serverArgs[8] = "--api.dai.url";
+        serverArgs[9] = Player.DAI_URL;
+        serverArgs[10] = "--branchCode";
+        serverArgs[11] = Player.Store_ID;
+    }
+    :"Holding Page: Wait for previous application to quit"
+    {
+      Group:
+        Display(Backdrop(Pen(2)), Margin(10, 10, 0, 0), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa, $777777, $bbbbbb, $dddddd, $465a96)));
+        Clip(348, 1264, "logo.png", Face(On, Pen(3)), Align(Center, Middle), OnReplay(Replace), Operation(On, ChromaKey($ffffff, Delta(2), Feather(0))));
+        Text(20, 20, "^n^n^n^nInitialising Application", Face(On, Pen(3)), Shadow(Off, Softness(5), Opacity(60)), Align(Center, Middle), AntiAlias(On), OnReplay(Replace), Under(Off, Thickness(3), Pen(3)), Font("Bitstream Vera Sans (Western [])", 50), Justify(Center, Top), Tabs(Relative(On)), Wrap(On, Width(1862)));
+        HardDuration(5000);
+    }
+    :"Holding Page: Wait for previous application to quit.2"
+    {
+      Group:
+        Display(Backdrop(Pen(2)), Margin(10, 10, 0, 0), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa, $777777, $bbbbbb, $dddddd, $465a96)));
+        Clip(348, 1264, "logo.png", Face(On, Pen(3)), Align(Center, Middle), OnReplay(Replace), Operation(On, ChromaKey($ffffff, Delta(2), Feather(0))));
+        Text(20, 20, "^n^n^n^nExtracting Application", Face(On, Pen(3)), Shadow(Off, Softness(5), Opacity(60)), Align(Center, Middle), AntiAlias(On), OnReplay(Replace), Under(Off, Thickness(3), Pen(3)), Font("Bitstream Vera Sans (Western [])", 50), Justify(Center, Top), Tabs(Relative(On)), Wrap(On, Width(1862)));
+        HardDuration(1000);
+    }
+    WindowsScript("C:\Users\daniel.knight\Documents\Work Repositories\Test Repository\test-repository\python\extract.py", Wait(On), Engine("Python.AXScript.2"), ShareVariable(appZipPath), ShareVariable(serverPath), ShareVariable(Log));
+    WindowsScript("C:\Users\daniel.knight\Documents\Work Repositories\Test Repository\test-repository\python\node-start.py", Engine("Python.AXScript.2"), ShareVariable(serverPath), ShareVariable(serverArgs), ShareVariable(urlHome), ShareVariable(Log));
+    :"LoopWaitingForServer"
+    {
+      Group:
+        Display(Backdrop(Pen(2)), Margin(10, 10, 0, 0), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa, $777777, $bbbbbb, $dddddd, $465a96)));
+        Clip(348, 1264, "logo.png", Face(On, Pen(3)), Align(Center, Middle), OnReplay(Replace), Operation(On, ChromaKey($ffffff, Delta(2), Feather(0))));
+        Text(20, 20, "^n^n^n^nLaunching Application", Face(On, Pen(3)), Shadow(Off, Softness(5), Opacity(60)), Align(Center, Middle), AntiAlias(On), OnReplay(Replace), Under(Off, Thickness(3), Pen(3)), Font("Bitstream Vera Sans (Western [])", 50), Justify(Center, Top), Tabs(Relative(On)), Wrap(On, Width(1862)));
+        Text(507, 1100, "!urlHome", Face(On, Pen(18)), Shadow(Off, Softness(5), Opacity(60)), Align(Center, None), AntiAlias(On), OnReplay(Replace), Under(Off, Thickness(3), Pen(18)), Font("Bitstream Vera Sans (Western [])", 16), Justify(Center, Top), Tabs(Relative(On)), Wrap(On, Width(1862)));
+        HardDuration(1000);
+    }
+    urlHome = "http://localhost:4000";
+    {
+      Group:
+        If(urlHome = "");
+        Goto("LoopWaitingForServer");
+    }
+    :"WebApp"
+    {
+      Group:
+        Display(Backdrop(Pen(1)), Margin(10, 10, 0, 0), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa, $777777, $bbbbbb, $dddddd, $465a96)));
+        WebClip(0, 0, urlHome, Transparent(Off), Operation(On), RenderSize(1920, 1080));
+        Wait();
+    }
+}
